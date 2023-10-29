@@ -1,4 +1,6 @@
+using System.Collections;
 using UnityEngine;
+using static UnityEngine.GraphicsBuffer;
 
 [RequireComponent(typeof(AudioSource))]
 public class AlarmSystem : MonoBehaviour
@@ -8,7 +10,7 @@ public class AlarmSystem : MonoBehaviour
 	[SerializeField] private string _intruderTag = "Intruder";
 
 	private AudioSource _audioSource;
-	private bool _intruderInside = false;
+	private Coroutine _coroutine;
 
 	private void Start()
 	{
@@ -20,7 +22,10 @@ public class AlarmSystem : MonoBehaviour
 	{
 		if (other.CompareTag(_intruderTag))
 		{
-			_intruderInside = true;
+			if (_coroutine != null)
+				StopCoroutine(_coroutine);
+
+			_coroutine = StartCoroutine(ChangeVolume(_maxVolume));
 		}
 	}
 
@@ -28,19 +33,19 @@ public class AlarmSystem : MonoBehaviour
 	{
 		if (other.CompareTag(_intruderTag))
 		{
-			_intruderInside = false;
+			if (_coroutine != null)
+				StopCoroutine(_coroutine);
+
+			_coroutine = StartCoroutine(ChangeVolume(0));
 		}
 	}
 
-	private void Update()
+	private IEnumerator ChangeVolume(float target)
 	{
-		if (_intruderInside)
+		do
 		{
-			_audioSource.volume = Mathf.MoveTowards(_audioSource.volume, _maxVolume, _fadeSpeed * Time.deltaTime);
-		}
-		else
-		{
-			_audioSource.volume = Mathf.MoveTowards(_audioSource.volume, 0.0f, _fadeSpeed * Time.deltaTime);
-		}
+			_audioSource.volume = Mathf.MoveTowards(_audioSource.volume, target, _fadeSpeed * Time.deltaTime);
+			yield return null;
+		} while (_audioSource.volume != target);
 	}
 }
