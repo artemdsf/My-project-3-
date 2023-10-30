@@ -314,7 +314,8 @@ GameObject:
   - component: {fileID: 1147073904}
   - component: {fileID: 1147073903}
   - component: {fileID: 1147073908}
-  - component: {fileID: 1147073907}
+  - component: {fileID: 1147073910}
+  - component: {fileID: 1147073909}
   m_Layer: 0
   m_Name: Alarm
   m_TagString: Untagged
@@ -400,21 +401,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1147073907
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1147073902}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c509197b6694b40458c1ae3ea5b5a903, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _maxVolume: 1
-  _fadeSpeed: 0.2
-  _intruderTag: Intruder
 --- !u!82 &1147073908
 AudioSource:
   m_ObjectHideFlags: 0
@@ -511,6 +497,34 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &1147073909
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1147073902}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e7a7d6463d0c75a48a56846f5397177b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _maxVolume: 1
+  _fadeSpeed: 0.1
+--- !u!114 &1147073910
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1147073902}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 401457e3f9c52014e866da8fc69cd3ad, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _intruderTag: Intruder
+  _audioController: {fileID: 1147073909}
 --- !u!1 &1192507487
 GameObject:
   m_ObjectHideFlags: 0
